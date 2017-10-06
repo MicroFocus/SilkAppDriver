@@ -365,9 +365,7 @@ public class W3CProtocolController {
 			@RequestBody(required = false) String body) throws Throwable {
 		LOGGER.info("maximizeWindow -->");
 
-		sessionManager.getSession(sessionId).maximizeCurrentWindow(); // TODO:
-																		// Current
-																		// window
+		sessionManager.getSession(sessionId).maximizeCurrentWindow();
 
 		LOGGER.info("maximizeWindow <--");
 
@@ -383,9 +381,7 @@ public class W3CProtocolController {
 			@RequestBody(required = false) String body) throws Throwable {
 		LOGGER.info("minimizeWindow -->");
 
-		sessionManager.getSession(sessionId).minimizeCurrentWindow(); // TODO:
-																		// Current
-																		// window
+		sessionManager.getSession(sessionId).minimizeCurrentWindow();
 
 		LOGGER.info("minimizeWindow <--");
 
@@ -401,9 +397,7 @@ public class W3CProtocolController {
 			@RequestBody(required = false) String body) throws Throwable {
 		LOGGER.info("fullscreenWindow -->");
 
-		sessionManager.getSession(sessionId).maximizeCurrentWindow(); // TODO:
-																		// Current
-																		// window
+		sessionManager.getSession(sessionId).maximizeCurrentWindow();
 
 		LOGGER.info("fullscreenWindow <--");
 
