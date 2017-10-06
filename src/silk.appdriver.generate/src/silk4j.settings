@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recorderProject version="17.0">
+  <applicationConfiguration>
+    <browserType>Firefox</browserType>
+    <baseStateInfo>
+      <locator>//BrowserApplication</locator>
+      <url>http://www.w3.org/TR/webdriver/</url>
+    </baseStateInfo>
+  </applicationConfiguration>
+  <agentOptions>
+    <entry>
+      <string>OPT_ASSET_NAMESPACE</string>
+      <string>GenerateWireProtocolImpl</string>
+    </entry>
+  </agentOptions>
+</recorderProject>

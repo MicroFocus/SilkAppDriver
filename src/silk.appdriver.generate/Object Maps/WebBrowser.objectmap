@@ -1,0 +1,7 @@
+<ObjectMap version="1">
+  <ObjectMapEntry id="WebBrowser" locator="//BrowserApplication" urlPattern="">
+    <ObjectMapEntry id="BrowserWindow" locator="//BrowserWindow">
+      <ObjectMapEntry id="simple" locator="//TABLE[@class=&apos;simple&apos;]"/>
+    </ObjectMapEntry>
+  </ObjectMapEntry>
+</ObjectMap>
