@@ -60,7 +60,7 @@ public class MultiWindowTests {
 
 		String aboutDialogHandle = driver.getWindowHandle();
 
-		Assert.assertEquals(mainWindowHandle, aboutDialogHandle);
+		Assert.assertNotSame(mainWindowHandle, aboutDialogHandle);
 
 		driver.findElement(By.xpath("//PushButton[@caption='OK']")).click();
 		assertEquals(1, driver.getWindowHandles().size());
