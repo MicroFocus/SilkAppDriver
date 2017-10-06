@@ -24,7 +24,7 @@ describe('InsuranceWeb Tests', function () {
       .then(function (innerDriver) {
         driver = innerDriver;
 
-        driver.executeScript("appdriver:startTrueLog", "C:\\temp\\jslog.tlz").then(done);
+        driver.executeScript("appdriver:startTrueLog", process.cwd() + "\\result.tlz").then(done);
       });
   });
 
