@@ -1,6 +1,6 @@
 # Silk AppDriver #
 
-**Silk AppDriver** is an implementation of the [W3C WebDriver protocol](https://www.w3.org/TR/webdriver/) for native (Windows) and mobile (Android and iOS) applications, built on top of [Silk Test](https://www.microfocus.com/de-de/products/silk-portfolio/silk-test/). The purpose of this project is to enable users of Silk Test to write tests for all kinds of applications using the WebDriver API in addition to the existing Silk Test APIs.
+**Silk AppDriver** is an implementation of the [W3C WebDriver protocol](https://www.w3.org/TR/webdriver/){:target="_blank"} for native (Windows) and mobile (Android and iOS) applications, built on top of [Silk Test](https://www.microfocus.com/de-de/products/silk-portfolio/silk-test/). The purpose of this project is to enable users of Silk Test to write tests for all kinds of applications using the WebDriver API in addition to the existing Silk Test APIs.
 
 ## Prerequisites ##
 
