@@ -104,7 +104,7 @@ The following table lists all methods listed in the [W3C spec](https://www.w3.or
 | [Find Elements From Element](https://www.w3.org/TR/webdriver/#dfn-find-elements-from-element) | Done |  |
 | [Is Element Selected](https://www.w3.org/TR/webdriver/#dfn-is-element-selected) | TODO |  |
 | [Get Element Attribute](https://www.w3.org/TR/webdriver/#dfn-get-element-attribute) | TODO |  |
-| [Get Element Property](https://www.w3.org/TR/webdriver/#dfn-get-element-property) | TODO |  |
+| [Get Element Property](https://www.w3.org/TR/webdriver/#dfn-get-element-property) | Done |  |
 | [Get Element CSS Value](https://www.w3.org/TR/webdriver/#dfn-get-element-css-value) | Done | Not supported (yields "unknown command") |
 | [Get Element Text](https://www.w3.org/TR/webdriver/#dfn-get-element-text) | Done |  |
 | [Get Element Tag Name](https://www.w3.org/TR/webdriver/#dfn-get-element-tag-name) | Done | Yields the class name  |
