@@ -28,6 +28,8 @@ public interface IReplaySession {
 
 	void minimizeCurrentWindow();
 
+	void switchToWindow(String body);
+
 	void clickElement(String elementId);
 
 	void sendKeysToElement(String elementId, String keys);

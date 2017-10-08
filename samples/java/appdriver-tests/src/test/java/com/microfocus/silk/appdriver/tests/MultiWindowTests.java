@@ -83,6 +83,27 @@ public class MultiWindowTests {
 		assertEquals("Untitled - Notepad", driver.getTitle());
 	}
 
+	@Test
+	public void testSwitchToWindow() {
+		assertEquals(1, driver.getWindowHandles().size());
+
+		String mainWindowHandle = driver.getWindowHandle();
+
+		driver.findElement(By.xpath("//Menu[@caption='Edit']")).click();
+		driver.findElement(By.xpath("//MenuItem[@caption='Replace']")).click();
+
+		assertEquals(2, driver.getWindowHandles().size());
+
+		String replaceWindowHandle = driver.getWindowHandle();
+
+		assertEquals("Replace", driver.getTitle());
+		driver.switchTo().window(mainWindowHandle);
+		assertEquals("Untitled - Notepad", driver.getTitle());
+
+		driver.switchTo().window(replaceWindowHandle);
+		assertEquals("Replace", driver.getTitle());
+	}
+
 	@After
 	public void closeApp() {
 		driver.findElement(By.xpath("//TextField")).clear();

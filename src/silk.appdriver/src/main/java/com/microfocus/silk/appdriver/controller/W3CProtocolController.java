@@ -29,6 +29,7 @@ import com.microfocus.silk.appdriver.controller.model.PerformActionsRequest;
 import com.microfocus.silk.appdriver.controller.model.ProtocolError;
 import com.microfocus.silk.appdriver.controller.model.Response;
 import com.microfocus.silk.appdriver.controller.model.SetWindowRectRequest;
+import com.microfocus.silk.appdriver.controller.model.SwitchToWindowRequest;
 import com.microfocus.silk.appdriver.impl.IReplaySession;
 import com.microfocus.silk.appdriver.impl.SessionManager;
 
@@ -261,11 +262,11 @@ public class W3CProtocolController {
 	 */
 	@RequestMapping(value = "/session/{sessionId}/window", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	public @ResponseBody ResponseEntity<Response> switchToWindow(@PathVariable String sessionId,
-			@RequestBody(required = false) String body) throws Throwable {
+			@RequestBody(required = false) SwitchToWindowRequest request) throws Throwable {
 		LOGGER.info("switchToWindow -->");
-		LOGGER.info("  -> " + body);
-
-		// TODO: Implement me!
+		LOGGER.info("  -> " + mapper.writeValueAsString(request));
+		
+		sessionManager.getSession(sessionId).switchToWindow(request.getHandle());
 
 		LOGGER.info("switchToWindow <--");
 

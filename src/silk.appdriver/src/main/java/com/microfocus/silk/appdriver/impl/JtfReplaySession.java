@@ -178,6 +178,25 @@ public class JtfReplaySession implements IReplaySession {
 	}
 
 	@Override
+	public void switchToWindow(String windowHandle) {
+		List<TestObject> allWindows = desktop.findAll("//Window", new FindOptions(100));
+
+		int handle = Integer.parseInt(windowHandle);
+
+		Optional<TestObject> window = allWindows.stream().filter(w -> w.getHandle().getHandle() == handle).findFirst();
+
+		if (window.isPresent()) {
+			if (window.get() instanceof IMoveable) {
+				((IMoveable) window.get()).setActive();
+			} else {
+				// TODO: Throw
+			}
+		} else {
+			// TODO: Throw
+		}
+	}
+
+	@Override
 	public void clickElement(String elementId) {
 		TestObject object = elements.get(elementId);
 
