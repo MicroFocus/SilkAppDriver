@@ -16,7 +16,7 @@ public interface IReplaySession {
 
 	int getCurrentWindowHandle();
 
-	List<Integer> getWindowHandles();
+	List<String> getWindowHandles();
 
 	Rect getCurrentWindowRect();
 	

@@ -12,6 +12,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -102,6 +103,13 @@ public class MultiWindowTests {
 
 		driver.switchTo().window(replaceWindowHandle);
 		assertEquals("Replace", driver.getTitle());
+	}
+	
+	@Test(expected = NoSuchWindowException.class)
+	public void testSwitchToInvalidWindow() {
+		assertEquals(1, driver.getWindowHandles().size());
+
+		driver.switchTo().window("42");
 	}
 
 	@After

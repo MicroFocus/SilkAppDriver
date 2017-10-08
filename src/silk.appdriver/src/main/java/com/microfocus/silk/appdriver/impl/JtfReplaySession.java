@@ -17,6 +17,7 @@ import com.borland.silktest.jtf.MobileBaseState;
 import com.borland.silktest.jtf.TestObject;
 import com.borland.silktest.jtf.TextField;
 import com.borland.silktest.jtf.common.CommonOptions;
+import com.borland.silktest.jtf.common.ObjectNotFoundException;
 import com.borland.silktest.jtf.common.TruelogScreenshotMode;
 import com.borland.silktest.jtf.common.types.FindOptions;
 import com.borland.silktest.jtf.common.types.Point;
@@ -119,10 +120,10 @@ public class JtfReplaySession implements IReplaySession {
 	}
 
 	@Override
-	public List<Integer> getWindowHandles() {
+	public List<String> getWindowHandles() {
 		List<TestObject> allWindows = getAllWindows();
 
-		List<Integer> handles = allWindows.stream().map(w -> w.getHandle().getHandle()).collect(Collectors.toList());
+		List<String> handles = allWindows.stream().map(w -> String.valueOf(w.getHandle().getHandle())).collect(Collectors.toList());
 
 		return handles;
 	}
@@ -181,7 +182,8 @@ public class JtfReplaySession implements IReplaySession {
 	public void switchToWindow(String windowHandle) {
 		int handle = Integer.parseInt(windowHandle);
 
-		Optional<TestObject> window = getAllWindows().stream().filter(w -> w.getHandle().getHandle() == handle).findFirst();
+		Optional<TestObject> window = getAllWindows().stream().filter(w -> w.getHandle().getHandle() == handle)
+				.findFirst();
 
 		if (window.isPresent()) {
 			if (window.get() instanceof IMoveable) {
@@ -190,7 +192,7 @@ public class JtfReplaySession implements IReplaySession {
 				// TODO: Throw
 			}
 		} else {
-			// TODO: Throw
+			throw new ObjectNotFoundException(windowHandle);
 		}
 	}
 

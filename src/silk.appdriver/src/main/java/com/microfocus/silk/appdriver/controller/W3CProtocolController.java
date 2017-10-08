@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.borland.silktest.jtf.common.InvalidObjectHandleException;
+import com.borland.silktest.jtf.common.ObjectNotFoundException;
 import com.borland.silktest.jtf.common.types.Rect;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
@@ -265,12 +266,19 @@ public class W3CProtocolController {
 			@RequestBody(required = false) SwitchToWindowRequest request) throws Throwable {
 		LOGGER.info("switchToWindow -->");
 		LOGGER.info("  -> " + mapper.writeValueAsString(request));
-		
-		sessionManager.getSession(sessionId).switchToWindow(request.getHandle());
 
+		ResponseEntity<Response> result = responseFactory.success(sessionId);
+
+		try {
+			sessionManager.getSession(sessionId).switchToWindow(request.getHandle());
+		} catch (ObjectNotFoundException ex) {
+			result = responseFactory.error(sessionId, ProtocolError.NO_SUCH_WINDOW);
+		}
+
+		LOGGER.info("  <- " + mapper.writeValueAsString(result.getBody()));
 		LOGGER.info("switchToWindow <--");
 
-		return responseFactory.success(sessionId);
+		return result;
 	}
 
 	/**
@@ -283,7 +291,7 @@ public class W3CProtocolController {
 		LOGGER.info("getWindowHandles -->");
 		LOGGER.info("  -> " + body);
 
-		List<Integer> handles = sessionManager.getSession(sessionId).getWindowHandles();
+		List<String> handles = sessionManager.getSession(sessionId).getWindowHandles();
 		ResponseEntity<Response> result = responseFactory.success(sessionId, handles);
 
 		LOGGER.info("  <- " + mapper.writeValueAsString(result.getBody()));
