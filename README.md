@@ -88,7 +88,7 @@ The following table lists all methods listed in the [W3C spec](https://www.w3.or
 | [Get Title](https://www.w3.org/TR/webdriver/#dfn-get-title) | Done |  |
 | [Get Window Handle](https://www.w3.org/TR/webdriver/#dfn-get-window-handle) | Done |  |
 | [Close Window](https://www.w3.org/TR/webdriver/#dfn-close-window) | Done |  |
-| [Switch To Window](https://www.w3.org/TR/webdriver/#dfn-switch-to-window) | TODO |  |
+| [Switch To Window](https://www.w3.org/TR/webdriver/#dfn-switch-to-window) | Done |  |
 | [Get Window Handles](https://www.w3.org/TR/webdriver/#dfn-get-window-handles) | Done |  |
 | [Switch To Frame](https://www.w3.org/TR/webdriver/#dfn-switch-to-frame) | Done | Not supported (yields "unknown command") |
 | [Switch To Parent Frame](https://www.w3.org/TR/webdriver/#dfn-switch-to-parent-frame) | Done | Not supported (yields "unknown command") |
