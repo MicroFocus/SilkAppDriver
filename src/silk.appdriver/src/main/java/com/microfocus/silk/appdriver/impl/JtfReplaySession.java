@@ -120,7 +120,7 @@ public class JtfReplaySession implements IReplaySession {
 
 	@Override
 	public List<Integer> getWindowHandles() {
-		List<TestObject> allWindows = desktop.findAll("//Window", new FindOptions(100));
+		List<TestObject> allWindows = getAllWindows();
 
 		List<Integer> handles = allWindows.stream().map(w -> w.getHandle().getHandle()).collect(Collectors.toList());
 
@@ -179,11 +179,9 @@ public class JtfReplaySession implements IReplaySession {
 
 	@Override
 	public void switchToWindow(String windowHandle) {
-		List<TestObject> allWindows = desktop.findAll("//Window", new FindOptions(100));
-
 		int handle = Integer.parseInt(windowHandle);
 
-		Optional<TestObject> window = allWindows.stream().filter(w -> w.getHandle().getHandle() == handle).findFirst();
+		Optional<TestObject> window = getAllWindows().stream().filter(w -> w.getHandle().getHandle() == handle).findFirst();
 
 		if (window.isPresent()) {
 			if (window.get() instanceof IMoveable) {
@@ -300,7 +298,7 @@ public class JtfReplaySession implements IReplaySession {
 	}
 
 	private TestObject getCurrentWindow() {
-		List<TestObject> allWindows = desktop.findAll("//Window", new FindOptions(100));
+		List<TestObject> allWindows = getAllWindows();
 
 		Optional<TestObject> activeWindow = allWindows.stream()
 				.filter(w -> w instanceof IMoveable && ((IMoveable) w).isActive()).findFirst();
@@ -310,5 +308,9 @@ public class JtfReplaySession implements IReplaySession {
 		} else {
 			return activeWindow.get();
 		}
+	}
+
+	private List<TestObject> getAllWindows() {
+		return desktop.findAll("//Window", new FindOptions(100));
 	}
 }
