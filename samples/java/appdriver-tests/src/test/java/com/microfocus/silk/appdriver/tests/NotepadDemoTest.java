@@ -1,7 +1,9 @@
 package com.microfocus.silk.appdriver.tests;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotSame;
 
+import java.io.File;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
@@ -9,8 +11,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.Rectangle;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -83,6 +87,15 @@ public class NotepadDemoTest {
 		// assertEquals("Consolas", textField.getAttribute("Font"));
 		// assertEquals("false", textField.getAttribute("IsPassword"));
 		// assertEquals("MultiLine", textField.getAttribute("true"));
+	}
+	
+	@Test
+	public void testScreenshotAPI () {
+		driver.findElement(By.xpath("//TextField")).sendKeys("hello!");
+		
+		File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+
+ 		assertTrue(file.length() > 0);
 	}
 
 	@Test

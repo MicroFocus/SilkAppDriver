@@ -127,7 +127,7 @@ The following table lists all methods listed in the [W3C spec](https://www.w3.or
 | [Accept Alert](https://www.w3.org/TR/webdriver/#dfn-accept-alert) | TODO |  |
 | [Get Alert Text](https://www.w3.org/TR/webdriver/#dfn-get-alert-text) | TODO |  |
 | [Send Alert Text](https://www.w3.org/TR/webdriver/#dfn-send-alert-text) | TODO |  |
-| [Take Screenshot](https://www.w3.org/TR/webdriver/#dfn-take-screenshot) | TODO |  |
+| [Take Screenshot](https://www.w3.org/TR/webdriver/#dfn-take-screenshot) | Done | Takes a screenshot of the entire desktop |
 | [Take Element Screenshot](https://www.w3.org/TR/webdriver/#dfn-take-element-screenshot) | TODO |  |
 
 ### TODOs ###

@@ -1,6 +1,11 @@
 package com.microfocus.silk.appdriver.impl;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +13,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.FileUtils;
 
 import com.borland.silktest.jtf.BaseState;
 import com.borland.silktest.jtf.Desktop;
@@ -333,6 +341,25 @@ public class JtfReplaySession implements IReplaySession {
 		} else {
 			return activeWindow.get();
 		}
+	}
+
+	@Override
+	public String takeScreenshot() {
+		File tempFile;
+		try {
+			tempFile = File.createTempFile("SilkAppDriver", ".png");
+			desktop.captureBitmap(tempFile.getAbsolutePath());
+
+			byte[] encoded = Base64.encodeBase64(FileUtils.readFileToByteArray(tempFile));
+			
+			Files.delete(tempFile.toPath());
+			
+			return new String(encoded, StandardCharsets.US_ASCII);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 	private List<TestObject> getAllWindows() {

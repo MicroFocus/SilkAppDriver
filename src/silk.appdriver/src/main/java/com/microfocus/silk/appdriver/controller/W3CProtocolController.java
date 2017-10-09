@@ -1003,13 +1003,16 @@ public class W3CProtocolController {
 	public @ResponseBody ResponseEntity<Response> takeScreenshot(@PathVariable String sessionId,
 			@RequestBody(required = false) String body) throws Throwable {
 		LOGGER.info("takeScreenshot -->");
-		LOGGER.info("  -> " + body);
 
-		// TODO: Implement me!
+		String screenshot = sessionManager.getSession(sessionId).takeScreenshot();
 
 		LOGGER.info("takeScreenshot <--");
 
-		return responseFactory.success(sessionId);
+		if (screenshot == null) {
+			return responseFactory.error(sessionId, ProtocolError.UNKNOWN_ERROR); // No screenshot taken for some reason
+		}
+
+		return responseFactory.success(sessionId, screenshot);
 	}
 
 	/**

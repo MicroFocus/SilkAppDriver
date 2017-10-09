@@ -17,7 +17,7 @@
 	</properties>
 
 	<build>
-	   <finalName>silk-appdriver</finalName>
+		<finalName>silk-appdriver</finalName>
 
 		<plugins>
 			<plugin>
@@ -80,6 +80,16 @@
 			<groupId>com.mashape.unirest</groupId>
 			<artifactId>unirest-java</artifactId>
 			<version>1.4.7</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.10</version>
 		</dependency>
 	</dependencies>
 	<description>Silk AppDriver is an implementation of the W3C WebDriver protocol for native (Windows) and mobile (Android and iOS) applications, built on top of Silk Test.</description>

@@ -1,5 +1,6 @@
 package com.microfocus.silk.appdriver.impl;
 
+import java.io.File;
 import java.util.List;
 
 import com.borland.silktest.jtf.common.types.Rect;
@@ -19,7 +20,7 @@ public interface IReplaySession {
 	List<String> getWindowHandles();
 
 	Rect getCurrentWindowRect();
-	
+
 	void setCurrentWindowRect(int x, int y, int width, int height);
 
 	void closeCurrentWindow();
@@ -43,10 +44,12 @@ public interface IReplaySession {
 	Rect getElementRect(String elementId);
 
 	Object getElementProperty(String elementId, String name);
-	
+
 	boolean isElementEnabled(String elementId);
 
 	Object executeScript(String script, List<Object> args);
-	
+
+	String takeScreenshot();
+
 	void delete();
 }
