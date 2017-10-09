@@ -1,6 +1,8 @@
 package com.microfocus.silk.appdriver.tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -97,6 +99,17 @@ public class WpfSampleAppTests {
 		List<WebElement> shouldBeEmpty = driver.findElements(By.xpath("//SAPButton"));
 
 		assertEquals(0, shouldBeEmpty.size());
+	}
+
+	@Test
+	public void testIsEnabled() {
+		driver.findElement(By.xpath("//WPFMenuItem[@caption='Controls']")).click();
+		driver.findElement(By.xpath("//WPFMenuItem[@caption='Basic Controls']")).click();
+
+		assertTrue(driver.findElement(By.xpath("//WPFButton[@caption='Button _A']")).isEnabled());
+		assertFalse(driver.findElement(By.xpath("//WPFButton[@caption='Disabled']")).isEnabled());
+		
+		assertTrue(driver.findElement(By.xpath("//WPFTextBox")).isEnabled());
 	}
 
 	@After

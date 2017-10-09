@@ -1,5 +1,6 @@
 package com.microfocus.silk.appdriver.impl;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -123,7 +124,8 @@ public class JtfReplaySession implements IReplaySession {
 	public List<String> getWindowHandles() {
 		List<TestObject> allWindows = getAllWindows();
 
-		List<String> handles = allWindows.stream().map(w -> String.valueOf(w.getHandle().getHandle())).collect(Collectors.toList());
+		List<String> handles = allWindows.stream().map(w -> String.valueOf(w.getHandle().getHandle()))
+				.collect(Collectors.toList());
 
 		return handles;
 	}
@@ -263,6 +265,27 @@ public class JtfReplaySession implements IReplaySession {
 		Object result = object.getProperty(name);
 
 		return result;
+	}
+
+	@Override
+	public boolean isElementEnabled(String elementId) {
+		TestObject object = elements.get(elementId);
+
+		Optional<String> enabledMethod = object.getDynamicMethodList().stream().filter(m -> m.equals("Enabled"))
+				.findFirst();
+		if (enabledMethod.isPresent()) {
+			return (boolean) object.getProperty("Enabled");
+		} else {
+			try {
+				Method method = object.getClass().getMethod("isEnabled");
+
+				boolean enabled = (boolean) method.invoke(object);
+
+				return enabled;
+			} catch (Exception e) {
+				throw new RuntimeException(e); // TODO: Better error handling
+			}
+		}
 	}
 
 	@Override

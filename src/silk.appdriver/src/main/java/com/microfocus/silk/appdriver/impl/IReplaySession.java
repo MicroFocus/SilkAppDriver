@@ -44,6 +44,8 @@ public interface IReplaySession {
 
 	Object getElementProperty(String elementId, String name);
 	
+	boolean isElementEnabled(String elementId);
+
 	Object executeScript(String script, List<Object> args);
 	
 	void delete();

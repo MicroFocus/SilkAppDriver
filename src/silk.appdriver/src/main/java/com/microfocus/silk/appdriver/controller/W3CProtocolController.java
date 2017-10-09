@@ -671,11 +671,20 @@ public class W3CProtocolController {
 		LOGGER.info("isElementEnabled -->");
 		LOGGER.info("  -> " + body);
 
+		ResponseEntity<Response> result = responseFactory.success(sessionId);
+
+		try {
+			boolean enabled = sessionManager.getSession(sessionId).isElementEnabled(elementId);
+			result = responseFactory.success(sessionId, enabled);
+		} catch (InvalidObjectHandleException ex) {
+			result = responseFactory.error(sessionId, ProtocolError.STALE_ELEMENT_REFERENCE);
+		}
+
 		// TODO: Implement me!
 
 		LOGGER.info("isElementEnabled <--");
 
-		return responseFactory.success(sessionId);
+		return result;
 	}
 
 	/**
