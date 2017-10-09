@@ -1,3 +1,4 @@
+import os
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -15,7 +16,8 @@ class InsuranceTests(unittest.TestCase):
         cls.wait = WebDriverWait(cls.driver, 10)
 
     def setUp(self):        
-        self.driver.execute_script("appdriver:startTrueLog", "c:\\temp\\pylog.tlz")
+        self.driver.execute_script("appdriver:startTrueLog",
+            os.path.dirname(os.path.abspath(__file__)) + "\\results\\" + __class__.__name__ + ".tlz")
 
     def test1(self):            
         self.assertEqual(self.driver.title, "Untitled - Notepad")
