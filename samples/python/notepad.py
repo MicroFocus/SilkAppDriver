@@ -24,12 +24,14 @@ class InsuranceTests(unittest.TestCase):
         self.driver.set_window_rect(400, 500, 300, 200)
 
         window = self.driver.find_element_by_xpath("//Window")
-
+        
         textfield = window.find_element_by_xpath("//TextField")
         textfield.clear()
         textfield.send_keys("hello from python!")
         
         self.assertEqual(textfield.text, "hello from python!")
+
+        textfield.screenshot(os.path.dirname(os.path.abspath(__file__)) + "\\results\\screenshot.png")
 
         filemenu = self.driver.find_element_by_xpath("//Menu[@caption='File']")
         filemenu.click()

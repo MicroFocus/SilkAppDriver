@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -1006,12 +1007,14 @@ public class W3CProtocolController {
 
 		String screenshot = sessionManager.getSession(sessionId).takeScreenshot();
 
-		LOGGER.info("takeScreenshot <--");
-
-		if (screenshot == null) {
-			return responseFactory.error(sessionId, ProtocolError.UNKNOWN_ERROR); // No screenshot taken for some reason
+		if (screenshot != null) {
+			LOGGER.info("  <- " + StringUtils.abbreviate(screenshot, 30));
+		} else {
+			LOGGER.info("  <- ERROR: UNKNOWN ERROR");
+			return responseFactory.error(sessionId, ProtocolError.UNKNOWN_ERROR);
 		}
 
+		LOGGER.info("takeScreenshot <--");
 		return responseFactory.success(sessionId, screenshot);
 	}
 
@@ -1023,13 +1026,17 @@ public class W3CProtocolController {
 	public @ResponseBody ResponseEntity<Response> takeElementScreenshot(@PathVariable String sessionId,
 			@PathVariable String elementId, @RequestBody(required = false) String body) throws Throwable {
 		LOGGER.info("takeElementScreenshot -->");
-		LOGGER.info("  -> " + body);
+		String screenshot = sessionManager.getSession(sessionId).takeScreenshot(elementId);
 
-		// TODO: Implement me!
+		if (screenshot != null) {
+			LOGGER.info("  <- " + StringUtils.abbreviate(screenshot, 30));
+		} else {
+			LOGGER.info("  <- ERROR: UNKNOWN ERROR");
+			return responseFactory.error(sessionId, ProtocolError.UNKNOWN_ERROR);
+		}
 
 		LOGGER.info("takeElementScreenshot <--");
-
-		return responseFactory.success(sessionId);
+		return responseFactory.success(sessionId, screenshot);
 	}
 
 	private ResponseEntity<Response> findElement(String sessionId, String using, String value, String parentElement) {

@@ -50,6 +50,8 @@ public interface IReplaySession {
 	Object executeScript(String script, List<Object> args);
 
 	String takeScreenshot();
+	
+	String takeScreenshot(String elementId);
 
 	void delete();
 }

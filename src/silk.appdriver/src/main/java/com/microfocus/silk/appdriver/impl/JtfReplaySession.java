@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -345,24 +344,35 @@ public class JtfReplaySession implements IReplaySession {
 
 	@Override
 	public String takeScreenshot() {
+		return captureBitmap(desktop);
+	}
+
+	@Override
+	public String takeScreenshot(String elementId) {
+		TestObject object = elements.get(elementId);
+
+		return captureBitmap(object);
+	}
+
+	private List<TestObject> getAllWindows() {
+		return desktop.findAll("//Window", new FindOptions(100));
+	}
+
+	private String captureBitmap(TestObject object) {
 		File tempFile;
 		try {
 			tempFile = File.createTempFile("SilkAppDriver", ".png");
-			desktop.captureBitmap(tempFile.getAbsolutePath());
+			object.captureBitmap(tempFile.getAbsolutePath());
 
 			byte[] encoded = Base64.encodeBase64(FileUtils.readFileToByteArray(tempFile));
-			
+
 			Files.delete(tempFile.toPath());
-			
+
 			return new String(encoded, StandardCharsets.US_ASCII);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
 		return null;
-	}
-
-	private List<TestObject> getAllWindows() {
-		return desktop.findAll("//Window", new FindOptions(100));
 	}
 }
