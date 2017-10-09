@@ -109,7 +109,7 @@ The following table lists all methods listed in the [W3C spec](https://www.w3.or
 | [Get Element Text](https://www.w3.org/TR/webdriver/#dfn-get-element-text) | Done |  |
 | [Get Element Tag Name](https://www.w3.org/TR/webdriver/#dfn-get-element-tag-name) | Done | Yields the class name  |
 | [Get Element Rect](https://www.w3.org/TR/webdriver/#dfn-get-element-rect) | Done |  |
-| [Is Element Enabled](https://www.w3.org/TR/webdriver/#dfn-is-element-enabled) | TODO |  |
+| [Is Element Enabled](https://www.w3.org/TR/webdriver/#dfn-is-element-enabled) | Done |  |
 | [Element Click](https://www.w3.org/TR/webdriver/#dfn-element-click) | Done |  |
 | [Element Clear](https://www.w3.org/TR/webdriver/#dfn-element-clear) | Done |  |
 | [Element Send Keys](https://www.w3.org/TR/webdriver/#dfn-element-send-keys) | Partly done | Missing: Handling of special keys  |
